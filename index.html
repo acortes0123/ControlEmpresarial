@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control - Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .kpi {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+    }
+    .label {
+      text-align: center;
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📊 Panel de Control Interactivo</h1>
+  </header>
+
+  <div class="container">
+    <!-- KPI Cards -->
+    <div class="card">
+      <div class="kpi">1,245</div>
+      <div class="label">Clientes</div>
+    </div>
+    <div class="card">
+      <div class="kpi">$58,300</div>
+      <div class="label">Ventas</div>
+    </div>
+    <div class="card">
+      <div class="kpi">92%</div>
+      <div class="label">Satisfacción</div>
+    </div>
+    <div class="card">
+      <div class="kpi">320</div>
+      <div class="label">Pedidos</div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="card">
+      <h3>Ventas Mensuales</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Crecimiento Anual</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Distribución de Productos</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Comparativo Trimestral</h3>
+      <canvas id="radarChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Gráfico de Barras
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Ventas ($)',
+          data: [12000, 15000, 10000, 18000, 22000, 25000],
+          backgroundColor: '#3498db'
+        }]
+      }
+    });
+
+    // Gráfico de Líneas
+    new Chart(document.getElementById('lineChart'), {
+      type: 'line',
+      data: {
+        labels: ['2020', '2021', '2022', '2023', '2024'],
+        datasets: [{
+          label: 'Crecimiento (%)',
+          data: [20, 35, 50, 65, 80],
+          borderColor: '#2ecc71',
+          fill: false,
+          tension: 0.3
+        }]
+      }
+    });
+
+    // Gráfico de Torta
+    new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Lentes', 'Monturas', 'Accesorios', 'Servicios'],
+        datasets: [{
+          data: [40, 30, 15, 15],
+          backgroundColor: ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71']
+        }]
+      }
+    });
+
+    // Gráfico Comparativo (Radar)
+    new Chart(document.getElementById('radarChart'), {
+      type: 'radar',
+      data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [
+          {
+            label: '2024',
+            data: [65, 59, 80, 81],
+            borderColor: '#9b59b6',
+            backgroundColor: 'rgba(155, 89, 182, 0.2)'
+          },
+          {
+            label: '2025',
+            data: [75, 69, 90, 95],
+            borderColor: '#1abc9c',
+            backgroundColor: 'rgba(26, 188, 156, 0.2)'
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
